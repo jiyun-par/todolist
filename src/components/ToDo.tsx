@@ -27,17 +27,24 @@ function ToDo(props: IToDo) {
 			const targetIndex = oldToDos.findIndex(
 				(toDo) => toDo.id === props.id
 			);
+
 			const newToDo = {
 				text: props.text,
 				id: props.id,
 				//만약 event로 name을 받아오지 않고 arg 직접 값을 넣어줬으면 as any는 사용하지 않아도 된다
 				category: name as any,
 			};
-			return [
-				...oldToDos.slice(0, targetIndex),
-				newToDo,
-				...oldToDos.slice(targetIndex + 1),
-			];
+			return name !== Categories.DELETE
+				? [
+						...oldToDos.slice(0, targetIndex),
+						newToDo,
+						...oldToDos.slice(targetIndex + 1),
+				  ]
+				: [
+						...oldToDos.slice(0, targetIndex),
+
+						...oldToDos.slice(targetIndex + 1),
+				  ];
 		});
 	};
 	return (
@@ -47,24 +54,24 @@ function ToDo(props: IToDo) {
 			{props.category !== Categories.DOING && (
 				<ToDoBtn name={Categories.DOING} onClick={onClick}>
 					<BiRun />
-					<SubText>DOING</SubText>
+					<SubText>{Categories.DOING}</SubText>
 				</ToDoBtn>
 			)}
 			{props.category !== Categories.TO_DO && (
 				<ToDoBtn name={Categories.TO_DO} onClick={onClick}>
 					<BiCalendar />
-					<SubText>To Do</SubText>
+					<SubText>{Categories.TO_DO}</SubText>
 				</ToDoBtn>
 			)}
 			{props.category !== Categories.DONE && (
 				<ToDoBtn name={Categories.DONE} onClick={onClick}>
 					<BiCheckCircle />
-					<SubText>DONE</SubText>
+					<SubText>{Categories.DONE}</SubText>
 				</ToDoBtn>
 			)}
-			<ToDoBtn>
+			<ToDoBtn name={Categories.DELETE} onClick={onClick}>
 				<BiTrash />
-				<SubText>DELETE</SubText>
+				<SubText>{Categories.DELETE}</SubText>
 			</ToDoBtn>
 		</List>
 	);

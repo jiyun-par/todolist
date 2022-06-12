@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { categoryState, toDoState } from "../atoms";
+import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
+import { categoryState, persistAtom, toDoState } from "../atoms";
 import { BiPlusCircle } from "react-icons/bi";
 import styled from "styled-components";
 import { ToDoBtn } from "../ToDoBtn.styled";
@@ -31,7 +31,7 @@ interface IForm {
 }
 
 function CreateToDo() {
-	const setToDos = useSetRecoilState(toDoState);
+	const [Todos, setToDos] = useRecoilState(toDoState);
 	const category = useRecoilValue(categoryState);
 	const {
 		register,
@@ -40,7 +40,6 @@ function CreateToDo() {
 		formState: { errors },
 	} = useForm<IForm>();
 	const PlaceHolderText = `Please write a "${category}" list`;
-
 	const onSubmit = ({ toDo }: IForm) => {
 		setToDos((oldToDos) => [
 			{ text: toDo, id: Date.now(), category },
