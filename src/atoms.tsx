@@ -2,7 +2,7 @@ import { atom, selector } from "recoil";
 //first arg useRecoilValue(getvalue), sec arg useSetRecoilState(modify value)
 
 export enum Categories {
-	"TO_DO" = "TO_DO",
+	"TO_DO" = "TO DO",
 	"DOING" = "DOING",
 	"DONE" = "DONE",
 }

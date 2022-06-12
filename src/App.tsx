@@ -20,6 +20,15 @@ const GlobalStyle = createGlobalStyle`
 		color:inherit;
 		text-decoration:none;
 	}
+	li{
+		list-style:none;
+	}
+	button{
+		margin:0;
+		padding:0;
+		background: transparent;
+		border:none;
+	}
 
 `;
 

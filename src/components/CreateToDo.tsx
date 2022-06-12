@@ -1,6 +1,30 @@
 import { useForm } from "react-hook-form";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { categoryState, toDoState } from "../atoms";
+import { BiPlusCircle } from "react-icons/bi";
+import styled from "styled-components";
+import { ToDoBtn } from "../ToDoBtn.styled";
+
+const ToDoInput = styled.input`
+	width: 300px;
+	height: 40px;
+	text-indent: 10px;
+	padding: 0;
+	margin: 5px 0;
+	border: none;
+	background: #94b49f;
+	color: #fff;
+	font-size: 17px;
+	outline: none;
+	&::placeholder {
+		color: #fff;
+		font-size: 16px;
+	}
+`;
+
+const Form = styled.form`
+	display: flex;
+`;
 
 interface IForm {
 	toDo: string;
@@ -15,6 +39,7 @@ function CreateToDo() {
 		setValue,
 		formState: { errors },
 	} = useForm<IForm>();
+	const PlaceHolderText = `Please write a "${category}" list`;
 
 	const onSubmit = ({ toDo }: IForm) => {
 		setToDos((oldToDos) => [
@@ -24,14 +49,18 @@ function CreateToDo() {
 		setValue("toDo", "");
 	};
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<input
-				{...register("toDo", { required: "Please write todolist" })}
-				placeholder="Write a to do"
-			/>
+		<>
+			<Form onSubmit={handleSubmit(onSubmit)}>
+				<ToDoInput
+					{...register("toDo", { required: "Please write a list!" })}
+					placeholder={PlaceHolderText}
+				/>
+				<ToDoBtn>
+					<BiPlusCircle />
+				</ToDoBtn>
+			</Form>
 			<span>{errors?.toDo?.message}</span>
-			<button>Add</button>
-		</form>
+		</>
 	);
 }
 

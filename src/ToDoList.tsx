@@ -2,6 +2,9 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import { Categories, categoryState, toDoSelector } from "./atoms";
 import CreateToDo from "./components/CreateToDo";
 import ToDo from "./components/ToDo";
+import styled from "styled-components";
+
+const ListContainer = styled.ul``;
 
 function ToDoList() {
 	const toDos = useRecoilValue(toDoSelector);

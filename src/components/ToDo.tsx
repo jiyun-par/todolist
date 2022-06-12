@@ -1,5 +1,21 @@
 import { useSetRecoilState } from "recoil";
 import { Categories, IToDo, toDoState } from "../atoms";
+import { SubText, ToDoBtn } from "../ToDoBtn.styled";
+import styled from "styled-components";
+import { BiRun, BiCalendar, BiCheckCircle, BiTrash } from "react-icons/bi";
+
+const List = styled.li`
+	display: flex;
+	margin-top: 10px;
+`;
+const ListText = styled.div`
+	line-height: 50px;
+	text-indent: 10px;
+	color: #000;
+	width: 300px;
+	background-color: rgba(148, 180, 159, 0.5);
+`;
+
 function ToDo(props: IToDo) {
 	const setToDos = useSetRecoilState(toDoState);
 
@@ -25,24 +41,32 @@ function ToDo(props: IToDo) {
 		});
 	};
 	return (
-		<li>
-			{props.text}
+		<List>
+			<ListText>{props.text}</ListText>
+
 			{props.category !== Categories.DOING && (
-				<button name={Categories.DOING} onClick={onClick}>
-					DOING
-				</button>
+				<ToDoBtn name={Categories.DOING} onClick={onClick}>
+					<BiRun />
+					<SubText>DOING</SubText>
+				</ToDoBtn>
 			)}
 			{props.category !== Categories.TO_DO && (
-				<button name={Categories.TO_DO} onClick={onClick}>
-					TO DO
-				</button>
+				<ToDoBtn name={Categories.TO_DO} onClick={onClick}>
+					<BiCalendar />
+					<SubText>To Do</SubText>
+				</ToDoBtn>
 			)}
 			{props.category !== Categories.DONE && (
-				<button name={Categories.DONE} onClick={onClick}>
-					DONE
-				</button>
+				<ToDoBtn name={Categories.DONE} onClick={onClick}>
+					<BiCheckCircle />
+					<SubText>DONE</SubText>
+				</ToDoBtn>
 			)}
-		</li>
+			<ToDoBtn>
+				<BiTrash />
+				<SubText>DELETE</SubText>
+			</ToDoBtn>
+		</List>
 	);
 }
 export default ToDo;
