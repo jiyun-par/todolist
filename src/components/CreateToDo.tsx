@@ -7,12 +7,12 @@ import { ToDoBtn } from "../ToDoBtn.styled";
 
 const ToDoInput = styled.input`
 	width: 520px;
-	height: 40px;
+	height: 50px;
 	text-indent: 10px;
 	padding: 0;
 	margin: 5px 0;
 	border: none;
-	background: #94b49f;
+	background: #cdbba7;
 	color: #fff;
 	font-size: 17px;
 	outline: none;

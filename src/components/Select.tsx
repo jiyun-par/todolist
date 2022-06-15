@@ -8,10 +8,11 @@ import {
 import styled from "styled-components";
 
 const Selector = styled.select`
-	width: 150px;
+	width: 260px;
 	margin-right: 10px;
-	height: 30px;
+	height: 50px;
 	font-size: 16px;
+	border: none;
 `;
 function CateSelector() {
 	const [category, setCategory] = useRecoilState(categoryState);

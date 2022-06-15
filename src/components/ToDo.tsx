@@ -13,7 +13,7 @@ const ListText = styled.div`
 	text-indent: 10px;
 	color: #000;
 	width: 400px;
-	background-color: rgba(148, 180, 159, 0.5);
+	background-color: #deba9d;
 `;
 
 function ToDo(props: IToDo) {

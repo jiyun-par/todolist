@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
 	}
 	body {
 		font-family:'Source Sans Pro', sans-serif;
+		background:#F4DFD0;
 	}
 	a{
 		color:inherit;
@@ -36,7 +37,7 @@ const GlobalStyle = createGlobalStyle`
 function App() {
 	return (
 		<>
-			<Helmet title="To Do List"/>
+			<Helmet title="To Do List" />
 			<GlobalStyle />
 			<ToDoList />
 		</>
