@@ -43,17 +43,22 @@ function ToDoList() {
 	} = useForm<IFormCategory>();
 	const [cateList, setCateList] = useRecoilState(categoryName);
 	const setTodo = useSetRecoilState(toDoState);
+	const nameList = cateList.map((list) => list.categoryName);
 
 	const onAdd = ({ categoryName }: IFormCategory) => {
-		if (categoryName) {
-			setCateList((prev) => [...prev, { categoryName }]);
-			setValue("categoryName", "");
+		const idx = nameList.findIndex((name) => name === categoryName);
+		if (idx < 0) {
+			if (categoryName) {
+				setCateList((prev) => [...prev, { categoryName }]);
+			} else {
+				alert("Please write category!");
+			}
 		} else {
-			alert("Please write category!");
+			alert(`"${categoryName}" is already exist!`);
 		}
+		setValue("categoryName", "");
 	};
 	const onDelete = ({ deleteName }: IFormCategory) => {
-		const nameList = cateList.map((list) => list.categoryName);
 		const idx = nameList.findIndex((name) => name === deleteName);
 		if (idx > 0) {
 			console.log(nameList.findIndex((name) => name === deleteName));
