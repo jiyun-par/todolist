@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { categoryState, cateNameState, toDoState } from "../atoms";
 import { BiPlusCircle } from "react-icons/bi";
 import styled from "styled-components";

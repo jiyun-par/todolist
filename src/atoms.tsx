@@ -1,6 +1,5 @@
 import { atom, selector, useRecoilValue } from "recoil";
 import { recoilPersist } from "recoil-persist";
-import { constants } from "zlib";
 //first arg useRecoilValue(getvalue), sec arg useSetRecoilState(modify value)
 export const { persistAtom } = recoilPersist();
 export enum Categories {
