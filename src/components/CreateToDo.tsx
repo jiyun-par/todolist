@@ -10,7 +10,6 @@ const ToDoInput = styled.input`
 	height: 50px;
 	text-indent: 10px;
 	padding: 0;
-	margin: 5px 0;
 	border: none;
 	background: #cdbba7;
 	color: #fff;
