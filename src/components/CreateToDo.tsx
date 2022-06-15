@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
-import { categoryState, persistAtom, toDoState } from "../atoms";
+import { categoryState, cateNameState, toDoState } from "../atoms";
 import { BiPlusCircle } from "react-icons/bi";
 import styled from "styled-components";
 import { ToDoBtn } from "../ToDoBtn.styled";
 
 const ToDoInput = styled.input`
-	width: 300px;
+	width: 520px;
 	height: 40px;
 	text-indent: 10px;
 	padding: 0;
@@ -31,22 +31,23 @@ interface IForm {
 }
 
 function CreateToDo() {
-	const [Todos, setToDos] = useRecoilState(toDoState);
+	const setToDos = useSetRecoilState(toDoState);
 	const category = useRecoilValue(categoryState);
+	const cateName = useRecoilValue(cateNameState);
 	const {
 		register,
 		handleSubmit,
 		setValue,
 		formState: { errors },
 	} = useForm<IForm>();
-	const PlaceHolderText = `Please write a "${category}" list`;
 	const onSubmit = ({ toDo }: IForm) => {
 		setToDos((oldToDos) => [
-			{ text: toDo, id: Date.now(), category },
+			{ text: toDo, id: Date.now(), cateName, category },
 			...oldToDos,
 		]);
 		setValue("toDo", "");
 	};
+	const PlaceHolderText = `Please write a ${category} list for ${cateName.toUpperCase()}`;
 	return (
 		<>
 			<Form onSubmit={handleSubmit(onSubmit)}>
